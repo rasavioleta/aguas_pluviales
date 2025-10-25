@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos - Captación de Agua Zinacantepec</title>
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <h1>Proyectos Realizados</h1>
+            </div>
+            <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false">
+                &#9776;
+            </button>
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index.html#problema">El Problema</a></li>
+                    <li><a href="index.html#soluciones">Soluciones</a></li>
+                    <li><a href="calculadora.html">Calculadora</a></li>
+                    <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="index.html#faq">FAQ</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="projects-section">
+        <div class="container">
+            <h2 class="section-title">Proyectos de Captación en Zinacantepec</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="placeholder-image">Imagen Proyecto 1</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Sistema Doméstico - Colonia Centro</h3>
+                        <p class="project-location">Familia González - 4 personas</p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-value">45,000 L</span>
+                                <span class="stat-label">Agua captada anual</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">60%</span>
+                                <span class="stat-label">Reducción consumo</span>
+                            </div>
+                        </div>
+                        <p class="project-description">Sistema instalado en vivienda de 120m² con cisterna de 5,000 litros. Incluye filtro de primeras lluvias y sistema de bombeo.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="placeholder-image">Imagen Proyecto 2</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Proyecto Comunitario - Escuela Primaria</h3>
+                        <p class="project-location">Escuela Benito Juárez - 250 estudiantes</p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-value">120,000 L</span>
+                                <span class="stat-label">Agua captada anual</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">80%</span>
+                                <span class="stat-label">Para riego y limpieza</span>
+                            </div>
+                        </div>
+                        <p class="project-description">Sistema comunitario que abastece de agua para riego de áreas verdes y limpieza de instalaciones escolares.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="placeholder-image">Imagen Proyecto 3</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Captación Multi-familiar</h3>
+                        <p class="project-location">Conjunto Habitacional Las Flores - 8 familias</p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-value">200,000 L</span>
+                                <span class="stat-label">Agua captada anual</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">$15,000</span>
+                                <span class="stat-label">Ahorro anual conjunto</span>
+                            </div>
+                        </div>
+                        <p class="project-description">Sistema compartido entre 8 viviendas con cisterna comunitaria de 15,000 litros y sistema de distribución.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2024 Captación de Agua Zinacantepec. Promoviendo la sustentabilidad hídrica en el Valle de Toluca.</p>
+            <p>Datos de referencia: Precipitación Anual Promedio 850 mm (CONAGUA, 2020) | <a href="#">Aviso de Privacidad</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mainNav = document.getElementById('main-nav');
+
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', function() {
+                    mainNav.classList.toggle('is-open');
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true' || false;
+                    this.setAttribute('aria-expanded', !isExpanded);
+                });
+
+                // Close menu when clicking on a link
+                const navLinks = mainNav.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (mainNav.classList.contains('is-open')) {
+                            mainNav.classList.remove('is-open');
+                            menuToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

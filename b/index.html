@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captación de Agua - Zinacantepec</title>
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+      <link rel="icon" type="image/x-icon" href="imagenes/iconos/favicon/favicon.ico">
+    
+    <!-- Favicon PNG (tamaños estándar) -->
+    <link rel="icon" type="image/png" sizes="16x16" href="imagenes/descargar (17).jpeg">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <h1>Captación de Agua Zinacantepec</h1>
+            </div>
+            <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false">
+                &#9776;
+            </button>
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#problema">El Problema</a></li>
+                    <li><a href="#soluciones">Soluciones</a></li>
+                    <li><a href="calculadora.html">Calculadora</a></li>
+                    <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section" id="inicio">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Captación de Agua Pluvial en Zinacantepec</h2>
+                <p>Una solución sostenible para enfrentar la escasez de agua en nuestra comunidad</p>
+                <a href="calculadora.html" class="cta-button">Calcular Agua Captable</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container main-content">
+        <main class="main-section">
+            <section id="problema" class="problem-section">
+                <h2>El Problema del Agua en Zinacantepec</h2>
+                <p>Zinacantepec enfrenta una crisis hídrica creciente debido a múltiples factores:</p>
+                <ul>
+                    <li>Disminución de las fuentes tradicionales de agua</li>
+                    <li>Crecimiento poblacional no planificado</li>
+                    <li>Contaminación de mantos acuíferos</li>
+                    <li>Falta de infraestructura adecuada</li>
+                    <li>Efectos del cambio climático</li>
+                </ul>
+                <p>Esta situación afecta directamente la calidad de vida de los habitantes y limita el desarrollo económico de la región.</p>
+            </section>
+
+            <section id="soluciones" class="solutions-section">
+                <h2>Soluciones Propuestas</h2>
+                <div class="solution-grid">
+                    <div class="solution-card">
+                        <h3>Sistemas de Captación Pluvial Domésticos</h3>
+                        <p>Instalación de sistemas sencillos y económicos para recolectar agua de lluvia en viviendas, ideal para uso en jardines, limpieza y, con tratamiento adecuado, para consumo humano.</p>
+                        <ul>
+                            <li>Bajo costo de implementación</li>
+                            <li>Fácil mantenimiento</li>
+                            <li>Reducción de hasta 50% en consumo de agua municipal</li>
+                        </ul>
+                    </div>
+                    <div class="solution-card">
+                        <h3>Captación Comunitaria a Escala</h3>
+                        <p>Desarrollo de sistemas colectivos que beneficien a grupos de viviendas o comunidades completas, con infraestructura compartida y gestión comunitaria del recurso.</p>
+                        <ul>
+                            <li>Mayor eficiencia en costos</li>
+                            <li>Beneficio para toda la comunidad</li>
+                            <li>Posibilidad de obtener apoyos gubernamentales</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="mapa" class="map-section">
+                <h2>Mapa Interactivo de Zinacantepec</h2>
+                <div class="map-container">
+                    <div id="mapid"></div>
+                    <div class="map-info">
+                        <div class="map-legend">
+                            <h3>Leyenda de Zonas</h3>
+                            <div class="legend-item">
+                                <div class="legend-color low-water"></div>
+                                <div>Zona baja precipitación</div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color medium-water"></div>
+                                <div>Zona media precipitación</div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color high-water"></div>
+                                <div>Zona alta precipitación</div>
+                            </div>
+                        </div>
+                        <div class="map-legend">
+                            <h3>Información de la Zona</h3>
+                            <p id="zone-info">Haz clic en una zona del mapa para ver información detallada sobre precipitación y recomendaciones.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="faq" class="faq-section">
+                <h2>Preguntas Frecuentes</h2>
+                <div class="faq-item">
+                    <div class="faq-question">¿Qué tan limpia es el agua de lluvia?</div>
+                    <div class="faq-answer">
+                        <p>El agua de lluvia es naturalmente pura. La contaminación proviene del techo. Usando un buen sistema de desviación de primeras lluvias y un filtrado básico, es excelente para todos los usos domésticos, excepto beber, para lo cual se requiere purificación adicional.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Cuánto cuesta instalar un sistema?</div>
+                    <div class="faq-answer">
+                        <p>El costo varía mucho. Depende del tamaño del techo, la capacidad de la cisterna necesaria (determinada por la calculadora) y el tipo de filtros. Puede oscilar entre $15,000 y $40,000 MXN para un sistema doméstico básico a avanzado. La inversión se recupera en el ahorro de pipas y servicio municipal.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Necesito permiso del municipio para instalarlo?</div>
+                    <div class="faq-answer">
+                        <p>Generalmente, no se requiere un permiso específico para instalar un sistema de captación en una propiedad privada existente, ya que se considera una mejora de plomería interna. Sin embargo, siempre es recomendable consultar las normativas locales de Zinacantepec y revisar las restricciones de construcción.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contacto" class="contact-section">
+                <h2>¿Listo para la Autonomía Hídrica?</h2>
+                <p>Déjanos tus datos y un experto local te asesorará sin costo sobre diseño, materiales y optimización.</p>
+                <form class="contact-form" id="contact-form">
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required>
+                    <input type="email" id="email" name="email" placeholder="Correo Electrónico" required>
+                    <input type="tel" id="telefono" name="telefono" placeholder="Teléfono (Para contacto rápido)">
+                    <textarea id="comentarios" name="comentarios" placeholder="Comentarios: ¿Qué área de tu casa quieres analizar?"></textarea>
+                    <button type="submit" class="cta-button" id="submit-button">Solicitar Asesoría</button>
+                </form>
+            </section>
+        </main>
+
+        <aside class="data-aside">
+            <h3>Datos Clave de Zinacantepec</h3>
+            <ul>
+                <li>Precipitación Anual: <span>850 mm (Fuente CONAGUA)</span></li>
+                <li>Temporada de Lluvias: <span>Junio a Septiembre (Aprox. 70% del total)</span></li>
+                <li>Necesidad Hídrica: <span>~150 Litros por persona al día (Uso doméstico)</span></li>
+                <li>Capacidad de Ahorro: <span>Un techo de 100 m² puede captar hasta 68,000 litros al año.</span></li>
+                <li>Objetivo: <span>Reducir la dependencia de fuentes externas en la temporada de estiaje (Octubre-Mayo).</span></li>
+            </ul>
+            <p style="margin-top: 20px; font-size: 0.9em;">¡Tu techo es una fuente de agua! Usa la calculadora para ver tu potencial exacto.</p>
+        </aside>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="icon">📍</i>
+                            <span>Zinacantepec, Estado de México, México</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="icon">📞</i>
+                            <span>+52 722 123 4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="icon">✉️</i>
+                            <span>info@aguazinacantepec.org</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="icon">🕒</i>
+                            <span>Lun - Vie: 9:00 - 18:00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#problema">El Problema</a></li>
+                        <li><a href="#soluciones">Soluciones</a></li>
+                        <li><a href="calculadora.html">Calculadora</a></li>
+                        <li><a href="proyectos.html">Proyectos</a></li>
+                        <li><a href="#faq">Preguntas Frecuentes</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Recursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="documentos/guia-instalacion.pdf" target="_blank">Guía de Instalación</a></li>
+                        <li><a href="documentos/presupuestos.xlsx" target="_blank">Presupuestos</a></li>
+                        <li><a href="#">Proveedores Locales</a></li>
+                        <li><a href="#">Normativas</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Noticias</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Síguenos</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘 Facebook</a>
+                        <a href="#" class="social-link">📷 Instagram</a>
+                        <a href="#" class="social-link">🐦 Twitter</a>
+                        <a href="#" class="social-link">📹 YouTube</a>
+                    </div>
+                    <div class="newsletter">
+                        <h4>Boletín Informativo</h4>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Tu correo electrónico" required>
+                            <button type="submit">Suscribirse</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Captación de Agua Zinacantepec. Todos los derechos reservados.</p>
+                    <div class="footer-legal">
+                        <a href="#">Aviso de Privacidad</a>
+                        <a href="#">Términos y Condiciones</a>
+                        <a href="#">Mapa del Sitio</a>
+                    </div>
+                </div>
+                <div class="water-data">
+                    <p>Datos de referencia: Precipitación Anual Promedio 850 mm (CONAGUA, 2020)</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="js/mapa.js"></script>
+    <script src="js/formulario.js"></script>
+    <script>
+        // Menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mainNav = document.getElementById('main-nav');
+
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', function() {
+                    mainNav.classList.toggle('is-open');
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true' || false;
+                    this.setAttribute('aria-expanded', !isExpanded);
+                });
+
+                // Close menu when clicking on a link
+                const navLinks = mainNav.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (mainNav.classList.contains('is-open')) {
+                            mainNav.classList.remove('is-open');
+                            menuToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                });
+            }
+
+            // FAQ functionality
+            document.querySelectorAll('.faq-question').forEach(button => {
+                button.addEventListener('click', () => {
+                    const answer = button.nextElementSibling;
+                    const isVisible = answer.style.display === 'block';
+                    
+                    // Hide all other answers
+                    document.querySelectorAll('.faq-answer').forEach(ans => {
+                        if (ans !== answer) {
+                            ans.style.display = 'none';
+                        }
+                    });
+
+                    // Show/hide the clicked answer
+                    answer.style.display = isVisible ? 'none' : 'block';
+                });
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Newsletter form submission
+            const newsletterForm = document.querySelector('.newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    alert(`¡Gracias por suscribirte con el email: ${email}! Te mantendremos informado sobre captación de agua.`);
+                    this.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

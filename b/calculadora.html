@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Captación - Zinacantepec</title>
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <h1>Calculadora de Captación</h1>
+            </div>
+            <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false">
+                &#9776;
+            </button>
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index.html#problema">El Problema</a></li>
+                    <li><a href="index.html#soluciones">Soluciones</a></li>
+                    <li><a href="calculadora.html">Calculadora</a></li>
+                    <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="index.html#faq">FAQ</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="calculator-page-section">
+        <div class="container">
+            <h2 class="section-title">Calculadora de Captación de Agua</h2>
+            <div class="calculator-form-style">
+                <form id="waterCalculator">
+                    <div class="input-group">
+                        <label for="roofArea">Área de captación (m²):</label>
+                        <input type="number" id="roofArea" min="1" required>
+                        <p class="ayuda">Superficie del techo donde cae la lluvia</p>
+                    </div>
+                    <div class="input-group">
+                        <label for="rainfall">Precipitación anual (mm):</label>
+                        <div class="input-select-wrapper">
+                            <input type="number" id="rainfall" min="1" value="850" required>
+                            <select id="rainfallUnit">
+                                <option value="mm">mm</option>
+                            </select>
+                        </div>
+                        <p class="ayuda">Promedio anual en Zinacantepec: 850 mm</p>
+                    </div>
+                    <div class="input-group">
+                        <label for="roofMaterial">Material del techo:</label>
+                        <select id="roofMaterial" required>
+                            <option value="0.9">Lámina galvanizada (90%)</option>
+                            <option value="0.8">Teja (80%)</option>
+                            <option value="0.7">Concreto (70%)</option>
+                            <option value="0.6">Madera (60%)</option>
+                        </select>
+                        <p class="ayuda">Eficiencia de captación según material</p>
+                    </div>
+                    <button type="submit" class="cta-button" id="calcular-btn">Calcular Agua Captable</button>
+                </form>
+                <div class="resultado-captacion" id="result">
+                    <h3>Resultados:</h3>
+                    <p id="waterVolume" class="label-resultado"></p>
+                    <div class="volumen-destacado" id="waterVolumeHighlight"></div>
+                    <p id="waterUsage" class="mensaje-informativo"></p>
+                    <p id="savings" class="mensaje-informativo"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2024 Captación de Agua Zinacantepec. Promoviendo la sustentabilidad hídrica en el Valle de Toluca.</p>
+            <p>Datos de referencia: Precipitación Anual Promedio 850 mm (CONAGUA, 2020) | <a href="#">Aviso de Privacidad</a></p>
+        </div>
+        <div class="tank-visual">
+                        <div class="water-level" id="waterLevel"></div>
+
+        </div>
+    </footer>
+
+    <script src="js/calculadora.js"></script>
+    <script>
+        // Menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mainNav = document.getElementById('main-nav');
+
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', function() {
+                    mainNav.classList.toggle('is-open');
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true' || false;
+                    this.setAttribute('aria-expanded', !isExpanded);
+                });
+
+                // Close menu when clicking on a link
+                const navLinks = mainNav.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (mainNav.classList.contains('is-open')) {
+                            mainNav.classList.remove('is-open');
+                            menuToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
