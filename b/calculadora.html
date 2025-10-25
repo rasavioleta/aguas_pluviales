@@ -6,6 +6,212 @@
     <title>Calculadora de Captación - Zinacantepec</title>
     <link rel="stylesheet" href="css/estilo.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="imagenes/descargar (17).jpeg">
+    <style>
+        /* ESTILOS PARA EL TINACO INTERACTIVO */
+        .tinaco-container {
+            max-width: 500px;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        .tinaco-wrapper {
+            position: relative;
+            width: 200px;
+            height: 300px;
+            margin: 0 auto 20px;
+        }
+
+        .tinaco {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #f0f0f0;
+            border: 3px solid #1A535C;
+            border-radius: 10px 10px 50px 50px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .agua {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background: linear-gradient(to top, #1A535C, #4ECDC4);
+            transition: height 2s ease-in-out;
+            border-radius: 0 0 45px 45px;
+        }
+
+        .nivel-agua {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            z-index: 2;
+        }
+
+        .tapa {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120%;
+            height: 20px;
+            background: #5C4033;
+            border-radius: 50%;
+            z-index: 3;
+        }
+
+        .base {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120%;
+            height: 15px;
+            background: #5C4033;
+            border-radius: 50%;
+        }
+
+        .indicadores {
+            display: flex;
+            justify-content: space-between;
+            width: 200px;
+            margin: 0 auto;
+            font-size: 0.8rem;
+            color: var(--texto-secundario);
+        }
+
+        .estadisticas-tinaco {
+            background: var(--agua-clara);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .estadistica {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--bordes);
+        }
+
+        .barra-progreso {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .progreso {
+            height: 100%;
+            background: linear-gradient(90deg, #4ECDC4, #1A535C);
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+            position: relative;
+        }
+
+        .texto-progreso {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .comparacion {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .item-comparacion {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .icono-comparacion {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Animaciones */
+        @keyframes llenado {
+            0% {
+                height: 0%;
+            }
+            100% {
+                height: var(--nivel-agua);
+            }
+        }
+
+        .agua.animando {
+            animation: llenado 2s ease-in-out forwards;
+        }
+
+        .efecto-olas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.3" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,192C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            opacity: 0.3;
+            animation: olas 3s ease-in-out infinite;
+        }
+
+        @keyframes olas {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .burbujas-tinaco {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .burbuja {
+            position: absolute;
+            background: rgba(255,255,255,0.6);
+            border-radius: 50%;
+            animation: burbuja-subir 4s ease-in infinite;
+        }
+
+        @keyframes burbuja-subir {
+            0% {
+                transform: translateY(0) scale(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="main-header">
@@ -33,6 +239,7 @@
     <section class="calculator-page-section">
         <div class="container">
             <h2 class="section-title">Calculadora de Captación de Agua</h2>
+            
             <div class="calculator-form-style">
                 <form id="waterCalculator">
                     <div class="input-group">
@@ -62,6 +269,65 @@
                     </div>
                     <button type="submit" class="cta-button" id="calcular-btn">Calcular Agua Captable</button>
                 </form>
+                
+                <!-- Tinaco Interactivo -->
+                <div class="tinaco-container" id="tinacoContainer" style="display: none;">
+                    <h3>Visualización de Captación</h3>
+                    <div class="tinaco-wrapper">
+                        <div class="tapa"></div>
+                        <div class="tinaco">
+                            <div class="agua" id="aguaTinaco">
+                                <div class="efecto-olas"></div>
+                                <div class="burbujas-tinaco" id="burbujasTinaco"></div>
+                            </div>
+                            <div class="nivel-agua" id="nivelAgua">0%</div>
+                        </div>
+                        <div class="base"></div>
+                    </div>
+                    
+                    <div class="indicadores">
+                        <span>0%</span>
+                        <span>50%</span>
+                        <span>100%</span>
+                    </div>
+
+                    <div class="estadisticas-tinaco">
+                        <div class="estadistica">
+                            <span>Capacidad del tinaco:</span>
+                            <span id="capacidadTinaco">1,100 L</span>
+                        </div>
+                        <div class="estadistica">
+                            <span>Agua captada:</span>
+                            <span id="aguaCaptada">0 L</span>
+                        </div>
+                        <div class="estadistica">
+                            <span>Tinacos llenos:</span>
+                            <span id="tinacosLlenos">0</span>
+                        </div>
+                        
+                        <div class="barra-progreso">
+                            <div class="progreso" id="progresoTinaco" style="width: 0%;">
+                                <div class="texto-progreso">0%</div>
+                            </div>
+                        </div>
+
+                        <div class="comparacion">
+                            <div class="item-comparacion">
+                                <div class="icono-comparacion">🚿</div>
+                                <div id="duchas">0 duchas</div>
+                            </div>
+                            <div class="item-comparacion">
+                                <div class="icono-comparacion">🌱</div>
+                                <div id="riegos">0 riegos</div>
+                            </div>
+                            <div class="item-comparacion">
+                                <div class="icono-comparacion">🚗</div>
+                                <div id="lavadas">0 lavadas</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="resultado-captacion" id="result">
                     <h3>Resultados:</h3>
                     <p id="waterVolume" class="label-resultado"></p>
@@ -78,14 +344,88 @@
             <p>&copy; 2024 Captación de Agua Zinacantepec. Promoviendo la sustentabilidad hídrica en el Valle de Toluca.</p>
             <p>Datos de referencia: Precipitación Anual Promedio 850 mm (CONAGUA, 2020) | <a href="#">Aviso de Privacidad</a></p>
         </div>
-        <div class="tank-visual">
-                        <div class="water-level" id="waterLevel"></div>
-
-        </div>
     </footer>
 
     <script src="js/calculadora.js"></script>
     <script>
+        // Función para animar el tinaco
+        function animarTinaco(volumenLitros) {
+            const tinacoContainer = document.getElementById('tinacoContainer');
+            const aguaTinaco = document.getElementById('aguaTinaco');
+            const nivelAgua = document.getElementById('nivelAgua');
+            const progresoTinaco = document.getElementById('progresoTinaco');
+            const textoProgreso = progresoTinaco.querySelector('.texto-progreso');
+            const aguaCaptada = document.getElementById('aguaCaptada');
+            const tinacosLlenos = document.getElementById('tinacosLlenos');
+            const capacidadTinaco = document.getElementById('capacidadTinaco');
+            
+            // Mostrar contenedor del tinaco
+            tinacoContainer.style.display = 'block';
+            
+            // Calcular porcentaje de llenado (máximo 100%)
+            const capacidad = 1100; // Capacidad estándar de tinaco
+            const porcentaje = Math.min((volumenLitros / capacidad) * 100, 100);
+            const tinacosCompletos = Math.floor(volumenLitros / capacidad);
+            const resto = volumenLitros % capacidad;
+            
+            // Actualizar estadísticas
+            aguaCaptada.textContent = volumenLitros.toLocaleString() + ' L';
+            tinacosLlenos.textContent = tinacosCompletos + ' tinacos completos';
+            capacidadTinaco.textContent = capacidad.toLocaleString() + ' L';
+            
+            // Animar el llenado
+            setTimeout(() => {
+                aguaTinaco.style.height = porcentaje + '%';
+                nivelAgua.textContent = Math.round(porcentaje) + '%';
+                progresoTinaco.style.width = porcentaje + '%';
+                textoProgreso.textContent = Math.round(porcentaje) + '%';
+                
+                // Agregar clase de animación
+                aguaTinaco.classList.add('animando');
+                
+                // Crear burbujas durante el llenado
+                crearBurbujas();
+                
+            }, 500);
+            
+            // Actualizar comparaciones
+            document.getElementById('duchas').textContent = Math.floor(volumenLitros / 50) + ' duchas';
+            document.getElementById('riegos').textContent = Math.floor(volumenLitros / 500) + ' riegos';
+            document.getElementById('lavadas').textContent = Math.floor(volumenLitros / 200) + ' lavadas';
+        }
+
+        // Función para crear burbujas
+        function crearBurbujas() {
+            const burbujasContainer = document.getElementById('burbujasTinaco');
+            burbujasContainer.innerHTML = '';
+            
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const burbuja = document.createElement('div');
+                    burbuja.className = 'burbuja';
+                    
+                    // Posición y tamaño aleatorios
+                    const size = 5 + Math.random() * 10;
+                    const left = Math.random() * 80 + 10;
+                    const delay = Math.random() * 2;
+                    
+                    burbuja.style.width = size + 'px';
+                    burbuja.style.height = size + 'px';
+                    burbuja.style.left = left + '%';
+                    burbuja.style.animationDelay = delay + 's';
+                    
+                    burbujasContainer.appendChild(burbuja);
+                    
+                    // Remover burbuja después de la animación
+                    setTimeout(() => {
+                        if (burbuja.parentNode) {
+                            burbuja.parentNode.removeChild(burbuja);
+                        }
+                    }, 4000);
+                }, i * 300);
+            }
+        }
+
         // Menu toggle functionality
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.querySelector('.menu-toggle');
@@ -106,6 +446,39 @@
                             mainNav.classList.remove('is-open');
                             menuToggle.setAttribute('aria-expanded', 'false');
                         }
+                    });
+                });
+            }
+
+            // Modificar el evento submit para incluir el tinaco
+            const formulario = document.getElementById('waterCalculator');
+            if (formulario) {
+                formulario.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Validar formulario (usando la función del calculadora.js)
+                    if (!validarFormulario()) {
+                        return;
+                    }
+                    
+                    // Obtener valores del formulario
+                    const areaTecho = parseFloat(document.getElementById('roofArea').value);
+                    const precipitacion = parseFloat(document.getElementById('rainfall').value);
+                    const material = parseFloat(document.getElementById('roofMaterial').value);
+                    
+                    // Calcular resultados
+                    const resultados = calcularAguaCaptable(areaTecho, precipitacion, material);
+                    
+                    // Mostrar resultados
+                    mostrarResultados(resultados);
+                    
+                    // Animar el tinaco
+                    animarTinaco(resultados.volumenLitros);
+                    
+                    // Scroll a resultados
+                    document.getElementById('result').scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
                     });
                 });
             }
